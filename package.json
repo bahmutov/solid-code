@@ -1,0 +1,27 @@
+{
+  "name": "solid-code",
+  "version": "0.0.1",
+  "description": "JavaScript code quality front-end",
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bahmutov/solid-code.git"
+  },
+  "keywords": [
+    "js", "javascript", "testing", "quality"
+  ],
+  "dependencies": {
+    "optimist": "*",
+    "check-types": "*",
+    "colors": "*",
+    "cli-table": "*",
+    "nodewatch": "*",
+    "gt": "*",
+    "js-complexity-viz": "*",
+    "req-count": "*"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "license": "MIT"
+}
