@@ -1,6 +1,6 @@
 {
   "name": "solid-code",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "JavaScript code quality front-end",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "repository": {
@@ -23,5 +23,7 @@
   "engines": {
     "node": ">= 0.8.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "preferGlobal": "true",
+  "bin": { "solid": "solid.js" }
 }

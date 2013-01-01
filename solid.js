@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 (function() {
 	// grab command line arguments
 	var optimist = require("optimist");
@@ -27,5 +29,8 @@
 		console.log('missing input file|files|folder');
 		showUsageAndExit();
 	}
-
 }());
+
+var testing = require('./src/testing');
+testing.init(args._);
+testing.run();
