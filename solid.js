@@ -29,8 +29,18 @@
 		console.log('missing input file|files|folder');
 		showUsageAndExit();
 	}
+
+	var logger = require('optional-color-logger');
+	logger.init(args);
 }());
 
+
 var testing = require('./src/testing');
+
 testing.init(args._);
 testing.run();
+
+var complexity = require('./src/complexity');
+complexity.run(args._);
+
+// process.exit(0);

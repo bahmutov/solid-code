@@ -16,9 +16,10 @@
     "colors": "*",
     "cli-table": "*",
     "nodewatch": "*",
-    "gt": "*",
-    "js-complexity-viz": "*",
-    "req-count": "*"
+    "gt": "latest",
+    "js-complexity-viz": "latest",
+    "req-count": "latest",
+    "optional-color-logger": "latest"
   },
   "engines": {
     "node": ">= 0.8.0"
