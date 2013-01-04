@@ -16,9 +16,30 @@ function init(filenames) {
 		console.log('base name', basename, 'in', folder);
 
 		var testName = path.join(folder, 'test', basename + 'Test.js');
-		console.log('test file', testName);
-		console.assert(fs.existsSync(testName), 'cannot find test file', testName);
-		testFiles.push(testName);
+		if (fs.existsSync(testName)) {
+			testFiles.push(testName);
+			return;
+		}
+
+		testName = path.join(folder, 'test', basename + '.js');
+		if (fs.existsSync(testName)) {
+			testFiles.push(testName);
+			return;
+		}
+
+		testName = path.join(folder, 'tests', basename + 'Test.js');
+		if (fs.existsSync(testName)) {
+			testFiles.push(testName);
+			return;
+		}
+
+		testName = path.join(folder, 'tests', basename + '.js');
+		if (fs.existsSync(testName)) {
+			testFiles.push(testName);
+			return;
+		}
+
+		throw 'cannot find test file ' + fullName;
 	});
 }
 
