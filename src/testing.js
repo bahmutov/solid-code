@@ -92,8 +92,8 @@ function run() {
 		console.assert(typeof tester === "object", 'loaded tester module');
 
 		tester.init({
-			files: testFiles,
-			cover: 'solid-code-coverage'
+			files: testFiles /*,
+			cover: 'solid-code-coverage'*/
 		});
 		var failed = tester.run();
 		if (failed > 0) {
