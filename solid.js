@@ -5,7 +5,9 @@
 	var optimist = require("optimist");
 	args = optimist.usage('JS quality metrics.\n' + 
 		'\tauthor: Gleb Bahmutov gleb.bahmutov@gmail.com\n' +
-		'\tusage: $0 <filename.js | folder with js files>')
+		'\tusage:\n\t\t$0 <filename.js | folder with js files>\n' + 
+		'\tor install and run globally\n\t\tnpm i -g solid-code\n' + 
+		'\t\tsolid foo.js bar.js ...')
 			.default({
 				help: false
 			})
@@ -34,10 +36,18 @@
 	logger.init(args);
 }());
 
+var files = args._;
+if (!files.length) {
+	console.log('nothing to do, exitting...');
+	process.exit(0);
+}
+
+var preload = require('./src/preload');
+preload.run(files);
 
 var testing = require('./src/testing');
 
-testing.init(args._);
+testing.init(files);
 testing.run();
 
 var complexity = require('./src/complexity');
