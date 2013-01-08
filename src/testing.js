@@ -42,7 +42,19 @@ function init(filenames) {
 			return;
 		}
 
-		throw 'cannot find test file ' + fullName;
+		testName = path.join(folder, basename + 'Test.js');
+		if (fs.existsSync(testName)) {
+			testFiles.push(testName);
+			return;
+		}
+
+		testName = path.join(folder, basename + 'Tests.js');
+		if (fs.existsSync(testName)) {
+			testFiles.push(testName);
+			return;
+		}
+
+		throw new Error('cannot find test file for ' + fullName);
 	});
 
 	return testFiles;
@@ -58,7 +70,8 @@ function run(sourceFiles) {
 	} else {
 		tester.init({
 			log: 0,
-			files: testFiles
+			files: testFiles,
+			colors: true
 			// cover: 'solid-code-coverage'
 		});
 		
