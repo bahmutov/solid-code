@@ -9,10 +9,13 @@
 		'\tor install and run globally\n\t\tnpm i -g solid-code\n' + 
 		'\t\tsolid foo.js bar.js ...')
 			.default({
-				help: false
+				help: false,
+				watch: false
 			})
-			.alias('h', 'help')
-			.boolean('help')
+			.alias('h', 'help').boolean('help')
+			.describe('help', 'show help message and exit')
+			.alias('w', 'watch').boolean('watch')
+			.describe('watch', 'watch specified files, rerun analysis on change')
 			.argv;
 
 	function showUsageAndExit() {
@@ -42,15 +45,5 @@ if (!files.length) {
 	process.exit(0);
 }
 
-var preload = require('./src/preload');
-preload.run(files);
-
-var testing = require('./src/testing');
-
-testing.init(files);
-testing.run();
-
-var complexity = require('./src/complexity');
-complexity.run(args._);
-
-// process.exit(0);
+var isSolid = require('./src/is-solid');
+isSolid.run(files);
