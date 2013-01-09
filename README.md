@@ -2,10 +2,13 @@ solid-code
 ==========
 
 JavaScript code quality front end:
-	* unit testing using https://github.com/bahmutov/gt
-	** with code coverage using https://github.com/gotwarlost/istanbul
-	* js complexity using https://github.com/bahmutov/js-complexity-viz
-	* AMD/node requirements using https://github.com/bahmutov/req-count
+
++ unit testing using https://github.com/bahmutov/gt
+	+ with code coverage using https://github.com/gotwarlost/istanbul
++ js complexity using https://github.com/bahmutov/js-complexity-viz
++ AMD/node requirements using https://github.com/bahmutov/req-count (coming)
+* jshint style (coming)
+* Dojo loader support (in progress)
 
 installation
 ------------
