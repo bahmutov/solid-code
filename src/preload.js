@@ -23,7 +23,7 @@ function run(filenames) {
 		var solidConfig = require(filename);
 		if (solidConfig.preload) {
 			var full = path.join(path.dirname(filename), solidConfig.preload);
-			// console.log('preloading', full);
+			console.log('preloading', full);
 			require(full);
 		}
 	});
