@@ -34,8 +34,8 @@ You can specify multiple source files, they are tested sequentially.
 Few command line switches
 -------------------------
 
-*--watch* or *-w* to watch source files and rerun analysis automatically on change.
-*--help* or *-h* shows command line options and exits.
++ *--watch* or *-w* to watch source files and rerun analysis automatically on change.
++ *--help* or *-h* shows command line options and exits.
 
 The tool tries to be as silent as possible if the code is solid.
 Otherwise it will print detailed description of the failure: 
