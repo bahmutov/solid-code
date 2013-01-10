@@ -2,13 +2,28 @@ var path = require('path');
 var fs = require('fs');
 
 function discoverSourceFiles(files) {
+	log.debug('discovering from files', files);
 	console.assert(Array.isArray(files), 'expect list of filenames');	
 	var glob = require("glob");
 
 	var filenames = [];
 	files.forEach(function (shortName) {
-		var files = glob.sync(shortName);
-		filenames = filenames.concat(files);
+		if (fs.existsSync(shortName)) {
+			var stat = fs.lstatSync(shortName);
+			if (stat.isDirectory()) {
+				log.debug(shortName, 'is a folder');
+				shortName = path.join(shortName, '*.js');
+			}
+		}
+		var foundMatches = glob.sync(shortName);
+
+		var discovered = [];
+		foundMatches.forEach(function (match) {
+			if (!fs.lstatSync(match).isDirectory(match)) {
+				discovered.push(match);
+			}
+		});
+		filenames = filenames.concat(discovered);
 	});
 
 	filenames = filenames.map(function (shortName) {
@@ -30,6 +45,8 @@ function run(files) {
 
 	function solidFiles(files) {
 		console.assert(Array.isArray(files), 'expect list of filenames');	
+		log.info('checking files', files);
+
 		preload.run(files);
 		testing.run(files);
 		complexity.run(files);
