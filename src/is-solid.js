@@ -48,20 +48,24 @@ function run(files) {
 		log.info('checking files', files);
 
 		preload.run(files);
-		testing.run(files);
-		complexity.run(files);
+		var sourceAndTestFiles = testing.run(files);
+		console.assert(Array.isArray(sourceAndTestFiles), 'expected to get back list of filenames');
+		complexity.run(sourceAndTestFiles);
+		return sourceAndTestFiles;
 	}
 
-	solidFiles(filenames);
-	if (args.watch && filenames.length) {
-		console.log('watching', filenames.length, 'files...');
+	var sourceAndTestFiles = solidFiles(filenames);
+	console.assert(Array.isArray(sourceAndTestFiles), 'expected to get back list of filenames');
+
+	if (args.watch && sourceAndTestFiles.length) {
+		console.log('watching', sourceAndTestFiles.length, 'files...');
 		var watch = require('nodewatch');
-		filenames.forEach(function (filename) {
+		sourceAndTestFiles.forEach(function (filename) {
 			watch.add(filename);
 		});
 		watch.onChange(function (file, prev, curr, action){
 			log.warn('file', file, action);
-			solidFiles([file]);
+			solidFiles(filenames);
 		});
 	}
 }

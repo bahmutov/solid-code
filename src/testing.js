@@ -1,8 +1,8 @@
 var fs = require('fs');
 var path = require('path');
-		var tester = require('gt/covered');
-		// var tester = require('C:/git/gt/covered');
-		console.assert(typeof tester === "object", 'loaded tester module');
+var tester = require('gt/covered');
+var _ = require('lodash');
+console.assert(typeof tester === "object", 'loaded tester module');
 
 function init(filenames) {
 	console.assert(Array.isArray(filenames), 'expect list of filenames');
@@ -57,29 +57,31 @@ function init(filenames) {
 		throw new Error('cannot find test file for ' + fullName);
 	});
 
-	return testFiles;
+return testFiles;
 }
 
+// returns list of source and test files
 function run(sourceFiles) {
 	console.assert(Array.isArray(sourceFiles), 'expected a list of names');
 	var testFiles = init(sourceFiles);
-	//console.log('source files', sourceFiles);
+	// console.log('source files', sourceFiles);
+	// console.log('test files', testFiles);
+	var allFiles = _.uniq(sourceFiles.concat(testFiles));
 
-	if (testFiles.length < 1) {
+	if (allFiles.length < 1) {
 		console.log('no unit tests found');
 	} else {
 		tester.init({
 			log: 0,
-			files: testFiles,
-			colors: true
-			// cover: 'solid-code-coverage'
+			files: allFiles,
+			colors: true,
+			cover: 'solid-code-coverage'
 		});
 		
 		var failed = tester.run();
-		if (failed > 0) {
-			process.exit(failed);
-		}
 	}
+
+	return allFiles;
 }
 
 module.exports.run = run;

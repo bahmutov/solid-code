@@ -1,6 +1,6 @@
 {
   "name": "solid-code",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "JavaScript code quality front-end",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "repository": {
@@ -21,7 +21,8 @@
     "req-count": "latest",
     "optional-color-logger": "latest",
     "nodewatch": "latest",
-    "glob": "latest"
+    "glob": "latest",
+    "lodash": "latest"
   },
   "engines": {
     "node": ">= 0.8.0"
