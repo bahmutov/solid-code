@@ -1,5 +1,4 @@
-// var complexity = require('js-complexity-viz/js-complexity-viz');
-var complexity = require('../../js-complexity/js-complexity-viz');
+var complexity = require('js-complexity-viz/js-complexity-viz');
 var check = require('check-types');
 
 function run(filenames) {
