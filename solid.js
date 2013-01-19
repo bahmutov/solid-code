@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-(function() {
+var options = (function() {
 	// grab command line arguments
 	var optimist = require("optimist");
 	args = optimist.usage('JS quality metrics.\n' + 
@@ -8,15 +8,15 @@
 		'\tusage:\n\t\t$0 <filename.js | folder with js files>\n' + 
 		'\tor install and run globally\n\t\tnpm i -g solid-code\n' + 
 		'\t\tsolid foo.js bar.js ...')
-			.default({
-				help: false,
-				watch: false
-			})
-			.alias('h', 'help').boolean('help')
-			.describe('help', 'show help message and exit')
-			.alias('w', 'watch').boolean('watch')
-			.describe('watch', 'watch specified files, rerun analysis on change')
-			.argv;
+	.default({
+		help: false,
+		watch: false
+	})
+	.alias('h', 'help').boolean('help')
+	.describe('help', 'show help message and exit')
+	.alias('w', 'watch').boolean('watch')
+	.describe('watch', 'watch specified files, rerun analysis on change')
+	.argv;
 
 	function showUsageAndExit() {
 		optimist.showHelp();
@@ -37,13 +37,14 @@
 
 	var logger = require('optional-color-logger');
 	logger.init(args);
+	return args;
 }());
 
-var files = args._;
-if (!files.length) {
+options.files = options._;
+if (!options.files.length) {
 	console.log('nothing to do, exitting...');
 	process.exit(0);
 }
 
 var isSolid = require('./src/is-solid');
-isSolid.run(files);
+isSolid.run(options);

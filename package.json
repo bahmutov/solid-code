@@ -1,6 +1,6 @@
 {
   "name": "solid-code",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "JavaScript code quality front-end",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "repository": {

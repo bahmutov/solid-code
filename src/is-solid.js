@@ -35,6 +35,7 @@ function discoverSourceFiles(files) {
 var testing = require('./testing');
 var preload = require('./preload');
 var complexity = require('./complexity');
+var reqs = require('./reqs');
 
 function solidFiles(files) {
 	console.assert(Array.isArray(files), 'expect list of filenames');	
@@ -44,6 +45,9 @@ function solidFiles(files) {
 	var sourceAndTestFiles = testing.run(files);
 	console.assert(Array.isArray(sourceAndTestFiles), 'expected to get back list of filenames');
 	complexity.run(sourceAndTestFiles);
+	reqs.run(files, {
+		colors: true
+	});
 	return sourceAndTestFiles;
 }
 
@@ -51,7 +55,7 @@ function watchFilesForChanges(filenames, sourceAndTestFiles)
 {
 	console.assert(Array.isArray(filenames), 'could not discover source files');
 	console.assert(Array.isArray(sourceAndTestFiles), 'expected to get back list of filenames');
-	
+
 	if (args.watch && sourceAndTestFiles.length) {
 		console.log('watching', sourceAndTestFiles.length, 'files...');
 		var watch = require('nodewatch');
@@ -65,10 +69,11 @@ function watchFilesForChanges(filenames, sourceAndTestFiles)
 	}
 }
 
-function run(files) {
-	console.assert(Array.isArray(files), 'expect list of files');
+function run(options) {
+	options = options || {};
+	console.assert(Array.isArray(options.files), 'expect list of files in options.files');
 
-	var filenames = discoverSourceFiles(files);
+	var filenames = discoverSourceFiles(options.files);
 	console.assert(Array.isArray(filenames), 'could not discover source files');
 
 	var sourceAndTestFiles = solidFiles(filenames);
