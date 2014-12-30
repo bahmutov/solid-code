@@ -8,26 +8,30 @@
     "url": "https://github.com/bahmutov/solid-code.git"
   },
   "keywords": [
-    "js", "javascript", "testing", "quality"
+    "js",
+    "javascript",
+    "testing",
+    "quality"
   ],
   "dependencies": {
-    "optimist": "*",
     "check-types": "*",
-    "colors": "*",
     "cli-table": "*",
-    "nodewatch": "*",
+    "colors": "*",
+    "glob": "latest",
     "gt": "latest",
     "js-complexity-viz": "latest",
-    "req-count": "latest",
+    "lodash": "latest",
+    "nodewatch": "0.3.2",
+    "optimist": "*",
     "optional-color-logger": "latest",
-    "nodewatch": "latest",
-    "glob": "latest",
-    "lodash": "latest"
+    "req-count": "latest"
   },
   "engines": {
     "node": ">= 0.8.0"
   },
   "license": "MIT",
   "preferGlobal": "true",
-  "bin": { "solid": "solid.js" }
+  "bin": {
+    "solid": "solid.js"
+  }
 }
